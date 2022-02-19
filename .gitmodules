@@ -1,0 +1,3 @@
+[submodule "CloudViewer"]
+	path = CloudViewer
+	url = https://github.com/kylemartinezolodin/CloudViewer.git
