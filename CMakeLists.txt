@@ -25,6 +25,7 @@ add_subdirectory(core)
 
 ######  GUI Inclusion & Initialization ###### 
 add_subdirectory(CloudViewer)
+add_subdirectory(ui)
 
 
 message(WARNING "Note: If encountered 'Unable to start program', go to build/CloudViewer/src/[Debug|Release] OR set CloudViewer as 'Startup Project'")
