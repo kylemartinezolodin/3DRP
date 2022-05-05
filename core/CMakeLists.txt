@@ -10,6 +10,6 @@ target_include_directories(3DRPCore
 )
 
 target_link_libraries(3DRPCore 
-    PRIVATE CGAL::CGAL
+    CGAL::CGAL
 )
 
