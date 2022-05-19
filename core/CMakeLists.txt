@@ -14,7 +14,7 @@ link_directories(${PCL_LIBRARY_DIRS})
 add_definitions(${PCL_DEFINITIONS})
 
 target_link_libraries(3DRPCore 
-    PRIVATE CGAL::CGAL
+    CGAL::CGAL
     ${PCL_LIBRARIES}
 )
 
