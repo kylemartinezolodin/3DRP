@@ -61,3 +61,33 @@ pcl::PolygonMesh _3DRPCore::Reconstruction::poisson(pcl::PointCloud<pcl::PointXY
 
     return mesh;
 }
+
+
+#include <CGAL/Scale_space_surface_reconstruction_3.h>
+#include <CGAL/Scale_space_reconstruction_3/Advancing_front_mesher.h>
+#include <CGAL/Scale_space_reconstruction_3/Jet_smoother.h>
+
+typedef CGAL::Scale_space_surface_reconstruction_3<Kernel>                    Reconstructor;
+typedef CGAL::Scale_space_reconstruction_3::Advancing_front_mesher<Kernel>    Mesher;
+typedef CGAL::Scale_space_reconstruction_3::Jet_smoother<Kernel>              Smoother;
+
+typedef Reconstructor::Facet_const_iterator                   Facet_iterator;
+
+void _3DRPCore::Reconstruction::scaleSpace(Point_set points) {
+    // Construct the mesh in a scale space.
+    Reconstructor reconstruct(points.points().begin(), points.points().end());
+    reconstruct.increase_scale<Smoother>(4);
+    reconstruct.reconstruct_surface(Mesher(0.5));
+
+    std::ofstream out("temp.off");
+    out << "OFF" << std::endl << points.size() << " " << reconstruct.number_of_facets() << " 0" << std::endl;
+
+    for (Point_set::iterator it = points.begin(); it != points.end(); ++it)
+        out << points.point(*it) << std::endl;
+
+    for (Reconstructor::Facet_iterator it = reconstruct.facets_begin();
+        it != reconstruct.facets_end(); ++it)
+        out << "3 " << (*it)[0] << " " << (*it)[1] << " " << (*it)[2] << std::endl;
+
+    std::cerr << "Done." << std::endl;
+}
