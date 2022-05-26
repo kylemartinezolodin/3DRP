@@ -40,11 +40,11 @@ bool _3DRPHelpers::vtkLoadSTL(const std::string fileNamePath, vtkSmartPointer<vt
 	reader->Update();
 	polyData = reader->GetOutput();
 
-	return polyData->GetNumberOfPoints() == 0 || polyData->GetNumberOfVerts() == 0;
+	return polyData->GetNumberOfPoints() == 0;
 }
 bool _3DRPHelpers::vtkSaveSTL(const std::string fileNamePath, const vtkSmartPointer<vtkPolyData> polyData, bool isBinaryFormat) {
 
-	if (polyData->GetNumberOfPoints() == 0 || polyData->GetNumberOfVerts() == 0) return false;
+	if (polyData->GetNumberOfPoints() == 0) return false;
 
 	// FROM: https://kitware.github.io/vtk-examples/site/Cxx/IO/WriteSTL/
 	vtkNew<vtkSTLWriter> stlWriter;

@@ -1,0 +1,18 @@
+*Error pointing to iterator_range.h
+SYMPTOMS:
+--Error message: Q_FOREACH has no ... tag 
+SOLUTION:
+-Overwrite line 17 of iterator_range.h with the following lines
+--#undef foreach
+--#include <boost/foreach.hpp>
+CAUSE: boost's foreach namespace conflicts with Qt's qglobal.h definitions
+
+*Error pointing to iterator_range.h
+symptoms:
+--Error message: boost::foreach has no member tag
+--
+Solution:
+-Overwrite line 17 of iterator_range.h with the following lines
+--#undef foreach
+--#include <boost/foreach.hpp>
+Cause: boost's foreach namespace conflicts with Qt's qglobal.h definitions
