@@ -46,7 +46,9 @@ namespace _3DRPCore {
 		pcl::PolygonMesh poisson(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);
 		//pcl::PolygonMesh poisson(pcl::PointCloud<pcl::PointNormal>::Ptr pointcloudWithNormals); // THIS FUNCTION WILL BE A CONTAINER WHERE AN ACTUAL RECONSTRUCTION HAPPENS
 		
-		void scaleSpace(Point_set points);
+		Polyhedron scaleSpace(Point_set points);
+
+		Polyhedron advancingFaceFront(std::vector<Point> points);
 	}
 }
 
